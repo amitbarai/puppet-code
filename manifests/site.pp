@@ -1,6 +1,6 @@
 node 'node1' {
   package { 'httpd':
-    ensure => 'present',
+    ensure => 'absent',
   }
   service {'httpd':
     ensure => stopped,
