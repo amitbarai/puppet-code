@@ -7,8 +7,8 @@ class profile::hiera_test (
   file { '/tmp/hiera_test.txt':
     ensure  => file,
     content => @("END"),
-               profile::hiera_test::ssl: ${ssl}
-               profile::hiera_test::backups_enabled: ${backups_enabled}
+                ${ssl}
+                ${backups_enabled}
                profile::hiera_test::site_alias: ${site_alias}
                |END
     owner   => root,
