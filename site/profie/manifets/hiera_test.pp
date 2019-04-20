@@ -1,8 +1,7 @@
 # /etc/puppetlabs/code/environments/production/modules/profile/manifests/hiera_test.pp
 class profile::hiera_test (
-  Boolean             $ssl,
-  Boolean             $backups_enabled,
-  Optional[String[1]] $site_alias = undef,
+  $ssl             = lookup('profile::hiera_test::ssl'),
+  $backups_enabled = lookup('profile::hiera_test::backups_enabled')
 ) {
   file { '/tmp/hiera_test.txt':
     ensure  => file,
