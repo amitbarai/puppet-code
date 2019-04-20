@@ -1,7 +1,7 @@
 # Class: profile::heira_test2
 #
 #
-class profile::heira_test2 (
+class profile::hiera_test::hiera_test (
     $aml_tenants       = lookup('sironaml::aml_tenants')
 )
 {

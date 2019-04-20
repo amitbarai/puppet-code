@@ -5,7 +5,7 @@ lookup_options:
     merge:
       strategy: deep
 
-### KYC - online - global config options 
+### ttomcat custome global config options 
 tomcat::bin::setenv:
   value1:                         "%{lookup('profile::hiera_test::ssl')}"
   value2:                         "%{lookup('profile::hiera_test::backups_enabled')}"

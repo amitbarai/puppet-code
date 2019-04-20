@@ -1,5 +1,5 @@
 # /etc/puppetlabs/code/environments/production/modules/profile/manifests/hiera_test.pp
-class profile::hiera_test (
+class profile::hiera_test::hiera_test (
   $ssl              = lookup('profile::hiera_test::ssl'),
   $backups_enabled  = lookup('profile::hiera_test::backups_enabled'),
   $env_globalcustom = lookup('tomcat::bin::setenv'),
