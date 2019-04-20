@@ -2,5 +2,5 @@
 #
 #
 class role::custome_file {
-  include profile::hiera_test
+  contain profile::hiera_test
 }
