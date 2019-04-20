@@ -1,4 +1,18 @@
 # /etc/puppetlabs/code/environments/production/data/common.yaml
 ---
+lookup_options:
+  tomcat::bin::setenv:
+    merge:
+      strategy: deep
+
+### KYC - online - global config options 
+tomcat::bin::setenv:
+  value1:                         "%{lookup('profile::hiera_test::ssl')}"
+  value2:                         "%{lookup('profile::hiera_test::backups_enabled')}"
+  catalina_base:                  '/app/tomcat'
+  catalina_home:                  '/app/tomcat'
+  test2:                          'N'
+
+### /tmp/hiera file config options 
 profile::hiera_test::ssl: false
 profile::hiera_test::backups_enabled: true
