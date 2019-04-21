@@ -20,6 +20,7 @@ profile::hiera_test::backups_enabled: true
 
 ### Apache common config ###
 apache_apps_root: "/app"
-apache_vh_root: "/etc/httpd/vh.d"
+apache_vh_root: "vh.d"
+apache_conf_root: "/etc/httpd"
 
 
