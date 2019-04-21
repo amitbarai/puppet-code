@@ -16,3 +16,10 @@ tomcat::bin::setenv:
 ### /tmp/hiera file config options 
 profile::hiera_test::ssl: false
 profile::hiera_test::backups_enabled: true
+
+
+### Apache common config ###
+apache_apps_root: "/app"
+apache_vh_root: "/etc/httpd/vh.d"
+
+

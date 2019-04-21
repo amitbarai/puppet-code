@@ -2,14 +2,13 @@
 #
 #
 class profile::apache::vh_install (
-  $ssl              = lookup('profile::hiera_test::ssl'),
-  $backups_enabled  = lookup('profile::hiera_test::backups_enabled'),
-  $env_globalcustom = lookup('tomcat::bin::setenv'),)
+  $apache_vh_root   = lookup('apache_vh_root'),
+  )
   {
-}
-file { '/etc/httpd/vh.d':
+  file { $apache_vh_root:
   ensure => directory,
   owner  => root,
   group  => root,
   mode   => '0644',
+  }
 }
