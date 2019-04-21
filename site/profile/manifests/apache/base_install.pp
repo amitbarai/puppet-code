@@ -7,6 +7,6 @@ class profile::apache::base_install {
   }
   service { 'httpd':
     ensure  => 'running',
-    require => package[httpd]
+    require => Package['httpd'],
   }
 }
