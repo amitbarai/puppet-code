@@ -13,12 +13,13 @@ class profile::apache::vh_install (
     group  => root,
     mode   => '0644',
     }
-  -> file_line { 'add_vh_dir_add':
+  -> file_line { 'dd_vh_dir_add':
       ensure            => present,
+      line              => "^IncludeOptional\ ${apache_vh_root}/*.conf",
       path              => "${apache_conf_root}/conf/httpd.conf",
+      multiple          => false,
       after             => '^IncludeOptional\ conf.d/*.conf',
       match             => "^IncludeOptional\ ${apache_vh_root}/*.conf",
       match_for_absence => true,
     }
 }
-
