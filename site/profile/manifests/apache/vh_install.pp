@@ -4,7 +4,7 @@
 class profile::apache::vh_install (
   $apache_vh_root   = lookup('apache_vh_root'),
   $apache_conf_root = lookup('apache_conf_root')
-  )
+)
   {
     file { 'apache_vh_root':
     ensure => directory,
@@ -13,13 +13,12 @@ class profile::apache::vh_install (
     group  => root,
     mode   => '0644',
     }
-    file_line { 'dd_vh_dir_add':
-      ensure            => present,
-      line              => "^IncludeOptional\ ${apache_vh_root}/*.conf",
-      path              => "${apache_conf_root}/conf/httpd.conf",
-      multiple          => false,
-      after             => '^IncludeOptional\ conf.d/*.conf',
-      match             => "^IncludeOptional\ ${apache_vh_root}/*.conf",
-      match_for_absence => true,
-    }
+    file_line { 'vh_dir_add':
+      ensure   => present,
+      path     => "${apache_conf_root}/conf/httpd.conf",
+      after    => '^IncludeOptional\ conf.d/*.conf',
+      line     => "^IncludeOptional\ ${apache_vh_root}/*.conf",
+      multiple => false,
+      #match_for_absence => true,
+  }
 }
