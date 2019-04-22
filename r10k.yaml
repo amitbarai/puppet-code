@@ -1,5 +1,6 @@
 ---
-# File should be present in /etc/puppetlabs/puppet
+# File should be present in /etc/puppetlabs/puppet and can be deployed using below command 
+# /opt/puppetlabs/puppet/bin/r10k deploy environment -pv -c /etc/puppetlabs/code/environments/production/r10k.yaml
 :cachedir: '/app/r10k/cache'
 :sources:
   :local:
