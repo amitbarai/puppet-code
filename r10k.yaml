@@ -1,4 +1,5 @@
 ---
+# File should be present in /etc/puppetlabs/puppet
 :cachedir: '/app/r10k/cache'
 :sources:
   :local:
