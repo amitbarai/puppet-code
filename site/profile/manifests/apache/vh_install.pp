@@ -3,7 +3,8 @@
 #
 class profile::apache::vh_install (
   $apache_vh_root   = lookup('apache_vh_root'),
-  $apache_conf_root = lookup('apache_conf_root')
+  $apache_conf_root = lookup('apache_conf_root'),
+  $vh_example_com   = lookup('vh_example_com'),
 )
   {
     file { 'apache_vh_root':
@@ -21,4 +22,10 @@ class profile::apache::vh_install (
       multiple          => false,
       match_for_absence => true,
   }
+    file { 'vh_example_com.conf':
+      ensure  => file,
+      path    => "/etc/httpd/vh.d/${vh_example_com}.conf",
+      content => template('profile/apache/vh_example_com.conf.erb'),
+      # Loads /etc/puppetlabs/code/environments/production/site/profile/templates/apache/vh_example_com.conf.erb
+    }
 }

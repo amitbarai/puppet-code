@@ -1,0 +1,18 @@
+  <VirtualHost <%= $vh_example_com %>:80>
+          ServerAdmin webmaster@<%= $vh_example_com %>
+          ServerName  <%= $vh_example_com %>
+          ServerAlias <%= $vh_example_com %>
+          DocumentRoot <%= $apache_apps_root %>/<%= $vh_example_com %>/<%= $apache_www_data %>
+          <Directory />
+                  AllowOverride All
+          </Directory>
+          <Directory <%= $apache_apps_root %>/<%= $vh_example_com %>>
+                  Options Indexes FollowSymLinks MultiViews
+                  AllowOverride all
+                  Require all granted
+          </Directory>
+          ErrorLog <%= $apache_apps_root %>/<%= $vh_example_com %>/<%= $apache_vh_logs %>/error.log
+          LogLevel error
+          CustomLog <%= $apache_apps_root %>/<%= $vh_example_com %>/<%= $apache_vh_logs %>/custome.log combined
+  </VirtualHost>
+  
