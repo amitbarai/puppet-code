@@ -25,7 +25,7 @@ class profile::apache::vh_install (
     file { 'vh_example_com.conf':
       ensure  => file,
       path    => "/etc/httpd/vh.d/${vh_example_com}.conf",
-      content => template('profile/template/apache/vh_example_com.conf.erb'),
+      content => template('profile/apache/vh_example_com.conf.erb'),
       # Loads /etc/puppetlabs/code/environments/production/site/profile/templates/apache/vh_example_com.conf.erb
     }
 }
