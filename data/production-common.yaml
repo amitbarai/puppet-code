@@ -8,6 +8,10 @@ lookup_options:
 ### Applications root global directory
 app_root: "/app"
 
+### /tmp/hiera file config options 
+profile::hiera_test::ssl: false
+profile::hiera_test::backups_enabled: true
+
 ### tomcat custome global config options 
 tomcat::bin::setenv:
   value1:                         "%{lookup('profile::hiera_test::ssl')}"
@@ -15,11 +19,6 @@ tomcat::bin::setenv:
   catalina_base:                  '/app/tomcat'
   catalina_home:                  '/app/tomcat'
   test2:                          'N'
-
-### /tmp/hiera file config options 
-profile::hiera_test::ssl: false
-profile::hiera_test::backups_enabled: true
-
 
 ### Apache common config ###
 apache_apps_root: "%{lookup('app_root')}"
