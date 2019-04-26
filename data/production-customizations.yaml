@@ -1,0 +1,6 @@
+# /etc/puppetlabs/code/environments/production/data/production-customizations.yaml
+---
+
+
+### /tmp/hiera file config options 
+vh_example_com: "example1.com"
