@@ -31,19 +31,20 @@ class profile::tomcat::tom_install (
     ensure => absent,
     force  => true,
   }
-  ->file { "/etc/systemd/system/${tomcatservicename}.service":
-    content => epp('tomcat/tomcat-systemd.epp', {
-      'catalinaHome'    => $catalina_home,
-      'java_home'       => $java_home,
-      'tomcatUser'      => $tomcatuser,
-      'tomcatGroup'     => $tomcatusergroup,
-      'ld_library_path' => $ld_library_path,
-      }
-    ),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    }
+#  ->file { "/etc/systemd/system/${tomcatservicename}.service":
+#    content => epp('tomcat/tomcat-systemd.epp', {
+#      'catalinaHome'    => $catalina_home,
+#      'java_home'       => $java_home,
+#      'tomcatUser'      => $tomcatuser,
+#      'tomcatGroup'     => $tomcatusergroup,
+#      'ld_library_path' => $ld_library_path,
+#      }
+#    ),
+#    owner   => 'root',
+#    group   => 'root',
+#    mode    => '0644',
+#    }
+
   ~>exec { 'tomcat_systemd-reload':
     command     => 'systemctl daemon-reload',
     path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
