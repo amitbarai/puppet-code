@@ -8,7 +8,7 @@ class profile::tomcat::tom_install (
   $tomcatuser            = lookup('tomcat::user'),
   $tomcatusergroup       = lookup('tomcat::group'),
   $tomcatservicename     = lookup('tomcat::servicename'),
-  $ld_library_path       = lookup('tomcat::ld_library_path'),
+  #$ld_library_path       = lookup('tomcat::ld_library_path'),
 )
 {
   # Tomcat Default Apps For Removal
