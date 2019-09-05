@@ -9,12 +9,7 @@ lookup_options:
 app_root: "/app"
 
 ### tomcat custome global config options 
-java::java_home:                 "/usr/lib/jvm/jre-openjdk"
-tomcat::catalina_home:           "%{lookup('app_root')}/tomcat"
-tomcat::user:                    'root'
-tomcat::group:                   'root'
-tomcat::servicename:             'tomcat'
-#tomcat::ld_library_path:         
+java::java_home:                 "/usr/lib/jvm/jre-openjdk"   
 
 tomcat::parameters:
   catalina_home: "%{lookup('app_root')}/tomcat"
