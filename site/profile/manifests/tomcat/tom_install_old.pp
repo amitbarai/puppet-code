@@ -4,7 +4,6 @@
 class profile::tomcat::tom_install (
   $java_home             = lookup('java::java_home'),
   $catalina_home         = lookup('tomcat::catalina_home'),
-  $source_url            = lookup('tomcat::install::source_url'),
   $tomcatuser            = lookup('tomcat::user'),
   $tomcatusergroup       = lookup('tomcat::group'),
   $tomcatservicename     = lookup('tomcat::servicename'),
