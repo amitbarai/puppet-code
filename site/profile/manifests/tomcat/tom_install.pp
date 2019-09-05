@@ -25,7 +25,7 @@ class profile::tomcat::tom_install (
     }
 
   # Root catalina_home directory creation 
-  ->file { $tomcat_default_dir:
+  file { $tomcat_default_dir:
       ensure => directory,
       force  => true,
       group  => $tomcatuser,
