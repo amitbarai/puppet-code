@@ -8,8 +8,6 @@ class profile::tomcat::tom_install (
   $tomcatuser            = lookup('tomcat::parameters.user'),
   $tomcatgroup           = lookup('tomcat::parameters.group'),
   $tomcatservicename     = lookup('tomcat::parameters.servicename'),
-  $catalina_base_lib     = lookup('tomcat::parameters.catalina_base')/lib,
-  $catalina_base_bin     = lookup('tomcat::parameters.catalina_base')/bin,
 )
 {
   # Tomcat Default directory creation 
@@ -36,13 +34,13 @@ class profile::tomcat::tom_install (
     }
 
   # Root catalina_home directory creation 
-  ~>file { $catalina_base_lib:
+  ~>file { '/app/tomcat/lib':
     ensure => present,
     type   => links,
     target => '/usr/share/tomcat/lib',
   }
     # Root catalina_home directory creation 
-  ~>file { $catalina_base_bin:
+  ~>file { '/app/tomcat/bin':
     ensure => present,
     type   => links,
     target => '/usr/share/tomcat/bin',
