@@ -1,6 +1,6 @@
 mod 'puppetlabs-stdlib', '5.2.0'  # To enable features like file_line
 mod 'puppetlabs-tomcat', '2.5.0'
-mod 'biemond-oradb', '3.0.15-fico'
+mod 'biemond-oradb', '3.0.15'
 mod 'camptocamp-systemd', '1.1.1'
 mod 'pltraining-dirtree', '0.3.0'
 mod 'puppet-archive', '2.3.0'
