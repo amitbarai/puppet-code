@@ -8,19 +8,21 @@ lookup_options:
 ### Applications root global directory
 app_root: "/app"
 
-
-### /tmp/hiera file config options 
-profile::hiera_test::ssl: false
-profile::hiera_test::backups_enabled: true
-
 ### tomcat custome global config options 
 java::java_home:                 "/usr/lib/jvm/jre-openjdk"
 tomcat::catalina_home:           "%{lookup('app_root')}/tomcat"
-#tomcat::install::source_ur:      
 tomcat::user:                    'root'
 tomcat::group:                   'root'
 tomcat::servicename:             'tomcat'
 #tomcat::ld_library_path:         
+
+tomcat::parameters:
+  catalina_home: "%{lookup('app_root')}/tomcat"
+  catalina_base: "%{lookup('app_root')}/tomcat"
+  user: 'tomcat'
+  group: 'tomcat'
+  servicename: 'my-tomcat'
+  
 
 #tomcat::bin::setenv:
 #  value1:                         "%{lookup('profile::hiera_test::ssl')}"
@@ -34,11 +36,5 @@ tomcat::servicename:             'tomcat'
 #  tomcatservicename:              'tomy1'
 #  ld_library_path:                'lib'
 
-### Apache common config ###
-apache_apps_root: "%{lookup('app_root')}"
-apache_vh_root: "vh.d"
-apache_conf_root: "/etc/httpd"
-apache_www_data: "htdocs"
-apache_vh_logs: "logs"
 
 

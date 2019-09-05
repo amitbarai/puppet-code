@@ -3,66 +3,49 @@
 
 class profile::tomcat::tom_install (
   $java_home             = lookup('java::java_home'),
-  $catalina_home         = lookup('tomcat::catalina_home'),
-  $source_url            = lookup('tomcat::install::source_url'),
-  $tomcatuser            = lookup('tomcat::user'),
-  $tomcatusergroup       = lookup('tomcat::group'),
-  $tomcatservicename     = lookup('tomcat::servicename'),
-  #$ld_library_path       = lookup('tomcat::ld_library_path'),
+  $catalina_home         = lookup('tomcat::parameters.catalina_home'),
+  $catalina_base         = lookup('tomcat::parameters.catalina_base'),
+  $tomcatuser            = lookup('tomcat::parameters.user'),
+  $tomcatgroup           = lookup('tomcat::parameters.group'),
+  $tomcatservicename     = lookup('tomcat::parameters.servicename'),
+  $catalina_base_lib     = lookup('tomcat::parameters.catalina_base')/lib,
+  $catalina_base_bin     = lookup('tomcat::parameters.catalina_base')/bin,
 )
 {
-  # Tomcat Default Apps For Removal
-  $tomcat_default_apps = [
-    "${catalina_home}/webapps/docs",
-    "${catalina_home}/webapps/examples",
-    "${catalina_home}/webapps/host-manager",
-    "${catalina_home}/webapps/manager",
+  # Tomcat Default directory creation 
+  $tomcat_default_dir = [
+    "${catalina_home}/webapps",
+    "${catalina_home}/work",
+    "${catalina_home}/temp",
+    "${catalina_home}/logs",
+    "${catalina_home}/conf",
   ]
 
-  class { '::tomcat': }
+  # Install tomcat service
+  ->service { 'tomcat':
+      ensure => 'present'
+    }
 
-# Install Tomcat
-  ->::tomcat::install { $catalina_home:
-    source_url => $source_url,
-  }
+  # Root catalina_home directory creation 
+  ->file { $tomcat_default_dir:
+      ensure => directory,
+      force  => true,
+      group  => $tomcatuser,
+      user   => $tomcatuser,
+      mode   => '0755',
+    }
 
-# Removing default Tomcat applications
-  ->file { $tomcat_default_apps:
-    ensure => absent,
-    force  => true,
+  # Root catalina_home directory creation 
+  ~>file { $catalina_base_lib:
+    ensure => present,
+    type   => links,
+    target => '/usr/share/tomcat/lib',
   }
-#  ->file { "/etc/systemd/system/${tomcatservicename}.service":
-#    content => epp('tomcat/tomcat-systemd.epp', {
-#      'catalinaHome'    => $catalina_home,
-#      'java_home'       => $java_home,
-#      'tomcatUser'      => $tomcatuser,
-#      'tomcatGroup'     => $tomcatusergroup,
-#      'ld_library_path' => $ld_library_path,
-#      }
-#    ),
-#    owner   => 'root',
-#    group   => 'root',
-#    mode    => '0644',
-#    }
-
-  ~>exec { 'tomcat_systemd-reload':
-    command     => 'systemctl daemon-reload',
-    path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
-    refreshonly => true,
-  }
-  ~>service { $tomcatservicename:
-    ensure => running,
-    enable => true,
-  }
-
-  # Configures ACM environment file.
-  $env_configuration_file = "${myapp::tomcat_home}/bin/set_env.sh"
-  file { $env_configuration_file:
-    ensure  => present,
-    owner   => $tomcat::user,
-    group   => $tomcat::group,
-    mode    => '0754',
-    content => template("${module_name}/profile/tomcat/set_env.sh.erb"),
+    # Root catalina_home directory creation 
+  ~>file { $catalina_base_bin:
+    ensure => present,
+    type   => links,
+    target => '/usr/share/tomcat/bin',
   }
 }
 
