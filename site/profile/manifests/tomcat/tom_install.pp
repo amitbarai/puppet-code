@@ -4,7 +4,7 @@
 class profile::tomcat::tom_install (
   $java_home             = lookup('java::java_home'),
   $catalina_home         = lookup('tomcat::catalina_home'),
-  #$source_url            = lookup('tomcat::install::source_url'),
+  $source_url            = lookup('tomcat::install::source_url'),
   $tomcatuser            = lookup('tomcat::user'),
   $tomcatusergroup       = lookup('tomcat::group'),
   $tomcatservicename     = lookup('tomcat::servicename'),
@@ -54,4 +54,15 @@ class profile::tomcat::tom_install (
     ensure => running,
     enable => true,
   }
+
+  # Configures ACM environment file.
+  $env_configuration_file = "${myapp::tomcat_home}/bin/set_env.sh"
+  file { $env_configuration_file:
+    ensure  => present,
+    owner   => $tomcat::user,
+    group   => $tomcat::group,
+    mode    => '0754',
+    content => template("${module_name}/profile/tomcat/set_env.sh.erb"),
+  }
 }
+
