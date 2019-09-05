@@ -20,7 +20,7 @@ class profile::tomcat::tom_install (
   ]
 
   # Install tomcat service
-  ->service { 'tomcat':
+  service { 'tomcat':
       ensure => 'present'
     }
 
