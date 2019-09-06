@@ -48,7 +48,7 @@ class profile::tomcat::tom_install (
   #}
   # Root catalina_home directory creation 
   file { '/app/tomcat/bin':
-    type   => links,
+    type   => link,
     target => '/usr/share/tomcat/bin',
   }
 }
