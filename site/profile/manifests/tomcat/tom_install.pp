@@ -50,6 +50,6 @@ class profile::tomcat::tom_install (
   #file { '/app/tomcat/bin':
   #  type   => link,
   #  target => '/usr/share/tomcat/bin',
-  }
+  #}
 }
 
