@@ -11,7 +11,6 @@ class profile::tomcat::tom_install (
   $tomcat_app_root       = lookup('app_root'),
 )
 {
-
   package { 'tomcat':
     ensure => 'letest'
   }
@@ -42,13 +41,12 @@ class profile::tomcat::tom_install (
     }
 
   # Root catalina_home directory creation 
-  #file { '/app/tomcat/lib' :
-  #  type   => link,
-  #  target => '/usr/share/java/tomcat',
-  #}
+  file { '/app/tomcat/lib' :
+    target => '/usr/share/java/tomcat',
+  }
   # Root catalina_home directory creation 
-  file { '/app/tomcat/bin':
-    type   => link,
+  file { '/app/tomcat/bin' :
+    ensure => 'link',
     target => '/usr/share/tomcat/bin',
   }
 }
