@@ -8,11 +8,20 @@ class profile::tomcat::tom_install (
   $tomcatuser            = lookup('tomcat::parameters.user'),
   $tomcatgroup           = lookup('tomcat::parameters.group'),
   $tomcatservicename     = lookup('tomcat::parameters.servicename'),
+  $tomcat_app_root       = lookup('app_root'),
 )
 {
+
+  package { 'tomcat':
+    ensure => 'letest'
+  }
+  # Install tomcat service
+  ~> service { 'tomcat':
+      ensure => 'stopped'
+    }
+
   # Tomcat Default directory creation 
   $tomcat_default_dir = [
-    "${catalina_home}",
     "${catalina_home}/webapps",
     "${catalina_home}/work",
     "${catalina_home}/temp",
@@ -20,13 +29,8 @@ class profile::tomcat::tom_install (
     "${catalina_home}/conf",
   ]
 
-  # Install tomcat service
-  service { 'tomcat':
-      ensure => 'stopped'
-    }
-
   # Root catalina_home directory creation 
-  file { $tomcat_default_dir:
+  ~> file { [$tomcat_app_root, $catalina_home, $tomcat_default_dir ] :
       ensure  => directory,
       force   => true,
       group   => $tomcatuser,
@@ -36,16 +40,16 @@ class profile::tomcat::tom_install (
     }
 
   # Root catalina_home directory creation 
-  #~>file { '/usr/share/tomcat/lib':
-  #  ensure => present,
-  #  type   => links,
-  #  target => '/app/tomcat/lib',
-  #}
-  #  # Root catalina_home directory creation 
-  #~>file { '/usr/share/tomcat/bin':
-  #  ensure => present,
-  #  type   => links,
-  #  target => '/app/tomcat/bin',
-  #}
+  ~>file { '/usr/share/tomcat/lib':
+    ensure => present,
+    type   => links,
+    target => '/app/tomcat/lib',
+  }
+  # Root catalina_home directory creation 
+  ~>file { '/usr/share/tomcat/bin':
+    ensure => present,
+    type   => links,
+    target => '/app/tomcat/bin',
+  }
 }
 
