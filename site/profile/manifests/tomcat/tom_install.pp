@@ -42,10 +42,10 @@ class profile::tomcat::tom_install (
     }
 
   # Root catalina_home directory creation 
-  file { '/app/tomcat/lib' :
-    type   => link,
-    target => '/usr/share/java/tomcat',
-  }
+  #file { '/app/tomcat/lib' :
+  #  type   => link,
+  #  target => '/usr/share/java/tomcat',
+  #}
   # Root catalina_home directory creation 
   file { '/app/tomcat/bin':
     type   => link,
