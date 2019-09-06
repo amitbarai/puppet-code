@@ -26,11 +26,12 @@ class profile::tomcat::tom_install (
 
   # Root catalina_home directory creation 
   file { $tomcat_default_dir:
-      ensure => directory,
-      force  => true,
-      group  => $tomcatuser,
-      owner  => $tomcatgroup,
-      mode   => '0755',
+      ensure  => directory,
+      force   => true,
+      group   => $tomcatuser,
+      owner   => $tomcatgroup,
+      mode    => '0755',
+      recurse => true,
     }
 
   # Root catalina_home directory creation 
