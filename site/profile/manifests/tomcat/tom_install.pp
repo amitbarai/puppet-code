@@ -12,6 +12,7 @@ class profile::tomcat::tom_install (
 {
   # Tomcat Default directory creation 
   $tomcat_default_dir = [
+    "${catalina_home}",
     "${catalina_home}/webapps",
     "${catalina_home}/work",
     "${catalina_home}/temp",
