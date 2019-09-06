@@ -22,6 +22,8 @@ class profile::tomcat::tom_install (
 
   # Tomcat Default directory creation 
   $tomcat_default_dir = [
+    "${tomcat_app_root}",
+    "${catalina_home}",
     "${catalina_home}/webapps",
     "${catalina_home}/work",
     "${catalina_home}/temp",
@@ -30,7 +32,7 @@ class profile::tomcat::tom_install (
   ]
 
   # Root catalina_home directory creation 
-  ~> file { [$tomcat_app_root, $catalina_home, $tomcat_default_dir ] :
+  ~> file {  $tomcat_default_dir :
       ensure  => directory,
       force   => true,
       group   => $tomcatuser,
