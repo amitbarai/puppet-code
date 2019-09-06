@@ -22,8 +22,8 @@ class profile::tomcat::tom_install (
 
   # Tomcat Default directory creation 
   $tomcat_default_dir = [
-    "${tomcat_app_root}",
-    "${catalina_home}",
+    "${tomcat_app_root}/",
+    "${catalina_home}/",
     "${catalina_home}/webapps",
     "${catalina_home}/work",
     "${catalina_home}/temp",
@@ -32,7 +32,7 @@ class profile::tomcat::tom_install (
   ]
 
   # Root catalina_home directory creation 
-  ~> file {  $tomcat_default_dir :
+  ~>file { $tomcat_default_dir :
       ensure  => directory,
       force   => true,
       group   => $tomcatuser,
@@ -42,16 +42,14 @@ class profile::tomcat::tom_install (
     }
 
   # Root catalina_home directory creation 
-  ~>file { '/usr/share/tomcat/lib':
-    ensure => present,
-    type   => links,
-    target => '/app/tomcat/lib',
+  ~>file { '/app/tomcat/lib':
+    type   => link,
+    target => '/usr/share/tomcat/lib',
   }
   # Root catalina_home directory creation 
-  ~>file { '/usr/share/tomcat/bin':
-    ensure => present,
-    type   => links,
-    target => '/app/tomcat/bin',
+  ~>file { '/app/tomcat/bin':
+    type   => link,
+    target => '/usr/share/tomcat/bin',
   }
 }
 
