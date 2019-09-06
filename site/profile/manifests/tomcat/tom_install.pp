@@ -21,7 +21,7 @@ class profile::tomcat::tom_install (
 
   # Install tomcat service
   service { 'tomcat':
-      ensure => 'present'
+      ensure => 'stopped'
     }
 
   # Root catalina_home directory creation 
