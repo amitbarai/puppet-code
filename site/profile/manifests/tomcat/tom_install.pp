@@ -12,7 +12,7 @@ class profile::tomcat::tom_install (
 )
 {
   package { 'tomcat':
-    ensure => 'letest'
+    ensure => 'latest'
   }
   # Install tomcat service
   ~> service { 'tomcat':
