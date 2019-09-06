@@ -29,7 +29,7 @@ class profile::tomcat::tom_install (
       ensure => directory,
       force  => true,
       group  => $tomcatuser,
-      user   => $tomcatgroup,
+      owner  => $tomcatgroup,
       mode   => '0755',
     }
 
