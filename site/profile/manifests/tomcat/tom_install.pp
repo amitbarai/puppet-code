@@ -11,14 +11,6 @@ class profile::tomcat::tom_install (
   $tomcat_app_root       = lookup('app_root'),
 )
 {
-  package { 'tomcat':
-    ensure => 'latest'
-  }
-  # Install tomcat service
-  ~> service { 'tomcat':
-      ensure => 'stopped'
-    }
-
   # Tomcat Default directory creation 
   $tomcat_default_dir = [
     "${tomcat_app_root}/",
@@ -51,3 +43,15 @@ class profile::tomcat::tom_install (
   }
 }
 
+# Class: tom_pkg 
+# Install tomcat service 
+class tom_pkg {
+  # resources
+  package { 'tomcat':
+    ensure => 'latest'
+  }
+  # Install tomcat service
+  ~> service { 'tomcat':
+      ensure => 'stopped'
+  }
+}
