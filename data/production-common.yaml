@@ -9,7 +9,7 @@ lookup_options:
 app_root: "/app"
 
 ### tomcat custome global config options 
-java::java_home:                 "/usr/lib/jvm/jre-openjdk"   
+java::java_home: "/usr/lib/jvm/jre-openjdk"   
 
 tomcat::parameters:
   catalina_home: "%{lookup('app_root')}/tomcat"
@@ -18,18 +18,16 @@ tomcat::parameters:
   group: 'tomcat'
   servicename: 'my-tomcat'
   
+  port:
+    ajp: 8010
+    shutdown: 8006
+    http: 8081
 
-#tomcat::bin::setenv:
-#  value1:                         "%{lookup('profile::hiera_test::ssl')}"
-#  value2:                         "%{lookup('profile::hiera_test::backups_enabled')}"
-#  catalina_base:                  '/app/tomcat'
-#  catalina_home:                  '/app/tomcat'
-#  java_home:                      '/usr/lib/jvm/jre-openjdk'
-#  #source_url:                     'tomcat::install::source_url'
-#  tomcatuser:                     'tomcat'
-#  tomcatusergroup:                'tomcat'
-#  tomcatservicename:              'tomy1'
-#  ld_library_path:                'lib'
-
-
-
+  tomcat_env_config:
+    tomcats_base: "/var/lib/tomcats/"
+    java_home: "%{lookup(java::java_home')}"
+    catalina_home: "%{lookup('app_root')}/tomcat"
+    catalina_base: "%{lookup('app_root')}/tomcat"
+    catalina_tmpdir: "%{lookup('app_root')}/tomcat/temp"
+    tomcat_user: "%{lookup('tomcat::parameters.user')}"
+    connector_port: "%{lookup('tomcat::parameters.port.http')}"

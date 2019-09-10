@@ -1,7 +1,12 @@
-# profile::tomcat::tom_install
-# Installs Tomcat with configuration
 
-class profile::tomcat::tom_install (
+# Class: tomy
+# ===========================
+#
+# A description of what this class does
+#
+# @example
+#   include tomy
+class tomy (
   $java_home             = lookup('java::java_home'),
   $catalina_home         = lookup('tomcat::parameters.catalina_home'),
   $catalina_base         = lookup('tomcat::parameters.catalina_base'),
@@ -14,17 +19,19 @@ class profile::tomcat::tom_install (
   $tomcat_port_shutdown  = lookup('tomcat::parameters.port.shutdown'),
 )
 {
-  class { '::tomy':
-    java_home            => $java_home,
-    catalina_home        => $catalina_home,
-    catalina_base        => $catalina_base,
-    tomcatuser           => $tomcatuser,
-    tomcatgroup          => $tomcatgroup,
-    tomcatservicename    => $tomcatservicename,
-    tomcat_app_root      => $tomcat_app_root,
-    tomcat_port_http     => $tomcat_port_http,
-    tomcat_port_ajp      => $tomcat_port_ajp,
-    tomcat_port_shutdown => $tomcat_port_shutdown,
+  case $::osfamily {
+    'RedHat': {
+      # tomcat isntallation sequence
+      contain ::tomy::package
+      contain ::tomy::install
+      contain ::tomy::config
+
+      Class['::tomy::package']
+      ->Class['::tomy::install']
+      ->Class['::tomy::config']
+    }
+    default: {
+      fail("Unsupported osfamily: ${::osfamily}")
+    }
   }
-  contain ::tomy
 }
