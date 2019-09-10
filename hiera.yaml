@@ -1,5 +1,5 @@
 version: 5
----
+#---
 defaults:
   # The default value for "datadir" is "data" under the same directory as the hiera.yaml
   # file (this file)
@@ -9,8 +9,8 @@ defaults:
   data_hash: yaml_data    # Use the built-in YAML backend.  data_hash: yaml_data
 hierarchy:
   - name: "Per-node data (yaml version)"
-    path: "nodes/%{::trusted.certname}.yaml"
-  - name: " Customizations"
+    path: "nodes/%{trusted.certname}.yaml"
+  - name: "Customizations"
     path: "%{environment}-customizations.yaml"
   - name: "Common data"
     path: "%{environment}-common.yaml"

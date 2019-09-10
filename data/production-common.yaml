@@ -1,8 +1,8 @@
 version: 5
 # /etc/puppetlabs/code/environments/production/data/common.yaml
----
+#---
 lookup_options:
-  tomcat::parameter:
+  tomcat::parameters:
     merge:
       strategy: deep
 
