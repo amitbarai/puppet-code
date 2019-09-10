@@ -1,5 +1,5 @@
----
 version: 5
+---
 defaults:
   # The default value for "datadir" is "data" under the same directory as the hiera.yaml
   # file (this file)
