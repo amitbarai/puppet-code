@@ -1,6 +1,6 @@
+---
 version: 5
-# /etc/puppetlabs/code/environments/production/data/common.yaml
-#---
+# /etc/puppetlabs/code/environments/production/data/production-common.yaml
 lookup_options:
   tomcat::parameters:
     merge:
