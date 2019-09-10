@@ -26,10 +26,10 @@ tomcat::parameters:
   port_http: 8081
   
 tomcat::env_config:
-  tomcats_base: "/var/lib/tomcats/"
-  java_home: "%{lookup('java::java_home')}/"
-  catalina_home: "%{lookup('app_root')}/tomcat"
   catalina_base: "%{lookup('app_root')}/tomcat"
+  catalina_home: "%{lookup('app_root')}/tomcat"
   catalina_tmpdir: "%{lookup('app_root')}/tomcat/temp"
-  tomcat_user: "%{lookup('tomcat::parameters.user')}"
   connector_port: "%{lookup('tomcat::parameters.port_http')}"
+  java_home: "%{lookup('java::java_home')}/"
+  tomcat_user: "%{lookup('tomcat::parameters.user')}"
+  tomcats_base: "/var/lib/tomcats/"
