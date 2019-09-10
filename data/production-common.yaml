@@ -26,7 +26,7 @@ tomcat::parameters:
 
   tomcat_env_config:
     tomcats_base: "/var/lib/tomcats/"
-    java_home: "%{lookup('java::java_home')}"
+    java_home: "%{lookup('java::java_home')}/"
     catalina_home: "%{lookup('app_root')}/tomcat"
     catalina_base: "%{lookup('app_root')}/tomcat"
     catalina_tmpdir: "%{lookup('app_root')}/tomcat/temp"
