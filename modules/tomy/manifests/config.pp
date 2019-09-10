@@ -12,9 +12,9 @@ class tomy::config (
   $tomcatgroup           = $::tomcat::parameters.group,
   $tomcatservicename     = $::tomcat::parameters.servicename,
   $tomcat_app_root       = $::app_root,
-  $tomcat_port_http      = $::tomcat::parameters.port.http,
-  $tomcat_port_ajp       = $::tomcat::parameters.port.ajp,
-  $tomcat_port_shutdown  = $::tomcat::parameters.port.shutdown,
+  $tomcat_port_http      = $::tomcat::parameters.port_http,
+  $tomcat_port_ajp       = $::tomcat::parameters.port_ajp,
+  $tomcat_port_shutdown  = $::tomcat::parameters.port_shutdown,
 )
 {
   # Verifies that class is called from an init.psp and not directly

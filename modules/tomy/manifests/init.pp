@@ -14,9 +14,9 @@ class tomy (
   $tomcatgroup           = lookup('tomcat::parameters.group'),
   $tomcatservicename     = lookup('tomcat::parameters.servicename'),
   $tomcat_app_root       = lookup('app_root'),
-  $tomcat_port_http      = lookup('tomcat::parameters.port.http'),
-  $tomcat_port_ajp       = lookup('tomcat::parameters.port.ajp'),
-  $tomcat_port_shutdown  = lookup('tomcat::parameters.port.shutdown'),
+  $tomcat_port_http      = lookup('tomcat::parameters.port_http'),
+  $tomcat_port_ajp       = lookup('tomcat::parameters.port_ajp'),
+  $tomcat_port_shutdown  = lookup('tomcat::parameters.port_shutdown'),
 )
 {
   case $::osfamily {
