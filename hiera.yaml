@@ -9,10 +9,10 @@ defaults:
   datadir:   data         # This path is relative to hiera.yaml's directory.
   data_hash: yaml_data    # Use the built-in YAML backend.  data_hash: yaml_data
 hierarchy:
-  - name: "Per-node data (yaml version)"
-    path: "nodes/%{trusted.certname}.yaml"
-  - name: "Customizations"
-    path: "%{environment}-customizations.yaml"
+# - name: "Per-node data (yaml version)"
+#   path: "nodes/%{trusted.certname}.yaml"
+# - name: "Customizations"
+#   path: "%{environment}-customizations.yaml"
   - name: "Common data"
     path: "%{environment}-common.yaml"
 # - name: "Other YAML hierarchy levels"
