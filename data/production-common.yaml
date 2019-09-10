@@ -1,7 +1,7 @@
 # /etc/puppetlabs/code/environments/production/data/common.yaml
 ---
 lookup_options:
-  tomcat::bin::setenv:
+  tomcat::parameter:
     merge:
       strategy: deep
 
