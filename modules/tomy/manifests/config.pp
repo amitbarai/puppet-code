@@ -30,13 +30,13 @@ class tomy::config (
   }
 
 # Creation of catalina_base
-  file { "${catalina_base}/":
-    ensure  => 'directory',
-    owner   => $tomcatuser,
-    group   => $tomcatgroup,
-    mode    => '0755',
-    recurse => true,
-  }
+# file { "${catalina_base}/":
+#   ensure  => 'directory',
+#   owner   => $tomcatuser,
+#   group   => $tomcatgroup,
+#   mode    => '0755',
+#   recurse => true,
+# }
 
 ## Config file for set_env.sh.erb
 #  file { "${catalina_base}/bin/set_env.sh":
