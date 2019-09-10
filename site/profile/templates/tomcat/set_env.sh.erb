@@ -4,6 +4,6 @@
 ################################################################################
 CATALINA_HOME=<%= scope['myapp::tomcat_home'] %>
 CATALINA_HOME=<%= scope['myapp::tomcat_home'] %>
-<% scope['myapp::tomcat_env_config'].sort.each do |key,val| -%>
+<% scope['tomcat::env_config'].sort.each do |key,val| -%>
 <%= key.upcase %>=<%= val %>
 <% end -%>
