@@ -25,4 +25,4 @@ tomcat::env_config:
   catalina_base: "%{lookup('app_root')}/tomcat"
   catalina_tmpdir: "%{lookup('app_root')}/tomcat/temp"
   tomcat_user: "%{lookup('tomcat::parameters.user')}"
-  connector_port: "%{lookup('tomcat::parameters.port.http')}"
+  connector_port: "%{lookup('tomcat::parameters.port_http')}"
