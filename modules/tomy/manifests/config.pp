@@ -54,7 +54,7 @@ file { $tomy_conf_file:
   owner   => $tomcatuser,
   group   => $tomcatgroup,
   mode    => '0755',
-  content => template('tomy/tomcat.conf.epp')
+  content => template('tomy/tomcat.conf.erb')
 }
 
 #  Changing ports in server.xml file

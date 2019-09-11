@@ -2,8 +2,8 @@
 #                     THIS FILE IS UNDER PUPPET CONTROL!                       #
 #                     Manuall changes will be ovewritten                       #
 ################################################################################
+CATALINA_HOME=<%= scope['tom::tomcat_home'] %>
 CATALINA_HOME=<%= scope['myapp::tomcat_home'] %>
-CATALINA_HOME=<%= scope['myapp::tomcat_home'] %>
-<% scope['tomcat::env_config'].sort.each do |key,val| -%>
-<%= key.upcase %>=<%= val %>
-<% end -%>
+#<% scope['tomcat::env_config'].sort.each do |key,val| -%>
+#<%= key.upcase %>=<%= val %>
+#<% end -%>

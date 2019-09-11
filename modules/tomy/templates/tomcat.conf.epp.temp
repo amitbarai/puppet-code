@@ -1,0 +1,34 @@
+################################################################################
+#                     THIS FILE IS UNDER PUPPET CONTROL!                       #
+#                     Manual changes will be ovewritten                       #
+################################################################################
+CATALINA_HOME=<%= scope['tomcat::parameters.catalina_home'] %>
+CATALINA_HOME=<%= scope['tomcat::parameters.catalina_base'] %>
+TOMCATS_BASE="/var/lib/tomcats/"
+<% scope['tomcat::env_config'].sort.each  do |key,val| -%>
+<%= key.upcase %>=<%= val %>
+<% end -%>
+
+<%-|   $catalinaHome,
+      String $tomcatUser,
+      String $tomcatGroup,
+      String $acm_home,
+|-%>
+# Puppet EPP template for generating a Tomcat systemd service.
+
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=syslog.target network.target
+ 
+[Service]
+Type=forking
+EnvironmentFile=<%= $acm_home %>/acm_environment
+ExecStart=<%= $catalinaHome %>/bin/startup.sh
+ExecStop=<%= $catalinaHome %>/bin/shutdown.sh
+ 
+User=<%= $tomcatUser %>
+Group=<%= $tomcatGroup %>
+UMask=0007
+ 
+[Install]
+WantedBy=multi-user.target

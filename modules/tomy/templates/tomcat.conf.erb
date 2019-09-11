@@ -2,9 +2,9 @@
 #                     THIS FILE IS UNDER PUPPET CONTROL!                       #
 #                     Manual changes will be ovewritten                       #
 ################################################################################
-# CATALINA_HOME=<%= scope['tomcat::parameters.catalina_home'] %>
-# CATALINA_HOME=<%= scope['tomcat::parameters.catalina_base'] %>
-# TOMCATS_BASE="/var/lib/tomcats/"
-<% scope['tomcat::env_config'].sort.each  do |key,val| -%>
+CATALINA_HOME=<%= scope['tomcat::parameters.catalina_home'] %>
+CATALINA_HOME=<%= scope['tomcat::parameters.catalina_base'] %>
+TOMCATS_BASE="/var/lib/tomcats/"
+<% scope.lookupvar['tomcat::env_config'].sort.each  do |key,val| -%>
 <%= key.upcase %>=<%= val %>
 <% end -%>
