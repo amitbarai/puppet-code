@@ -27,7 +27,7 @@ class tomy::config (
     user    => $tomcatuser,
     group   => $tomcatgroup,
     path    => '/bin:/usr/local/bin:/usr/bin',
-    onlyif  => "/usr/bin/test -d ${catalina_base}/conf",
+    #onlyif  => "/usr/bin/test -d ${catalina_base}/conf/server.xml",
   }
 
 # Creation of catalina_base
