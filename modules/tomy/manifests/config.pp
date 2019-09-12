@@ -27,7 +27,7 @@ class tomy::config (
     user    => $tomcatuser,
     group   => $tomcatgroup,
     path    => '/bin:/usr/local/bin:/usr/bin',
-    onlyif  => "/usr/bin/test -e ${catalina_base}/conf/config_done.info",
+    onlyif  => "/usr/bin/test ! -e ${catalina_base}/conf/config_done.info",
   }
 
 # Creation of catalina_base
@@ -62,7 +62,7 @@ file { $tomy_conf_file:
   exec {'changing port from server.xml':
     command => "sed -i 's/8005/${$tomcat_port_shutdown}/g; s/8080/${$tomcat_port_http}/g; s/8010/${$tomcat_port_ajp}/g' ${catalina_base}/conf/server.xml && /usr/bin/touch ${catalina_base}/conf/config_done.info", #lint:ignore:140chars
     path    => '/bin:/usr/local/bin:/usr/bin',
-    onlyif  => "/usr/bin/test -e ${catalina_base}/conf/config_done.info",
+    onlyif  => "/usr/bin/test ! -e ${catalina_base}/conf/config_done.info",
   }
 
 # create start up script
