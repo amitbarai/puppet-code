@@ -13,8 +13,8 @@ After=syslog.target network.target
 [Service]
 Type=simple
 EnvironmentFile=<%= @catalina_home %>/conf/tomcat.conf
-Environment="NAME=%I"
-EnvironmentFile=-/etc/sysconfig/tomcat@%I
+Environment="NAME="
+EnvironmentFile=-/etc/sysconfig/tomcat
 ExecStart=/etc/systemd/system/<%= @tomcatservicename %>.service start
 ExecStop=/etc/systemd/system/<%= @tomcatservicename %>.service stop
 SuccessExitStatus=143
