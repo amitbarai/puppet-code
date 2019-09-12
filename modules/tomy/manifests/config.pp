@@ -70,7 +70,7 @@ file { "/etc/systemd/system/${tomcatservicename}.service":
   ensure  => 'present',
   owner   => 'root',
   group   => 'root',
-  mode    => '0644',
+  mode    => '0655',
   content => template('tomy/tomcat.service.erb')
 }
 
