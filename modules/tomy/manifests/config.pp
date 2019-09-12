@@ -50,7 +50,7 @@ class tomy::config (
 
 # Configure environment Tomcat server
 $tomy_conf_file = "${catalina_base}/conf/tomcat.conf"
-->file { $tomy_conf_file:
+file { $tomy_conf_file:
   ensure  => 'present',
   owner   => $tomcatuser,
   group   => $tomcatgroup,
