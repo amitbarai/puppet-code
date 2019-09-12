@@ -68,6 +68,9 @@ file { $tomy_conf_file:
 # create start up script
 file { "/etc/systemd/system/${tomcatservicename}.service":
   ensure  => 'present',
+  owner   => $tomcatuser,
+  group   => $tomcatgroup,
+  mode    => '0755',
   content => template('tomy/tomcat.service.erb')
 }
 
