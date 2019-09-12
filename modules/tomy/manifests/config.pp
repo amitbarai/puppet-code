@@ -27,7 +27,7 @@ class tomy::config (
     user    => $tomcatuser,
     group   => $tomcatgroup,
     path    => '/bin:/usr/local/bin:/usr/bin',
-    #onlyif  => "/usr/bin/test -d ${catalina_base}/conf/server.xml",
+    onlyif  => "/usr/bin/test -f ${catalina_base}/conf/config_done.info",
   }
 
 # Creation of catalina_base
@@ -50,19 +50,20 @@ class tomy::config (
 
 # Configure environment Tomcat server
 $tomy_conf_file = "${catalina_base}/conf/tomcat.conf"
-file { $tomy_conf_file:
+->file { $tomy_conf_file:
   ensure  => 'present',
   owner   => $tomcatuser,
   group   => $tomcatgroup,
   mode    => '0755',
-  content => template('tomy/tomcat.conf.erb')
+  content => template('tomy/tomcat.conf.erb'),
+  onlyif  => "/usr/bin/test -f ${catalina_base}/conf/config_done.info",
 }
 
 #  Changing ports in server.xml file
-  exec {'changing port from server.xml':
-    command => "sed -i 's/8005/${$tomcat_port_shutdown}/g; s/8080/${$tomcat_port_http}/g; s/8010/${$tomcat_port_ajp}/g' ${catalina_base}/conf/server.xml", #lint:ignore:140chars
+  ~>exec {'changing port from server.xml':
+    command => "sed -i 's/8005/${$tomcat_port_shutdown}/g; s/8080/${$tomcat_port_http}/g; s/8010/${$tomcat_port_ajp}/g' ${catalina_base}/conf/server.xml && touch ${catalina_base}/conf/config_done.info", #lint:ignore:140chars
     path    => '/bin:/usr/local/bin:/usr/bin',
-    onlyif  => "/usr/bin/test ! -d ${catalina_base}/conf",
+    onlyif  => "/usr/bin/test -f ${catalina_base}/conf/config_done.info",
   }
 
 # create start up script
