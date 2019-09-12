@@ -56,11 +56,10 @@ file { $tomy_conf_file:
   group   => $tomcatgroup,
   mode    => '0755',
   content => template('tomy/tomcat.conf.erb'),
-  onlyif  => "/usr/bin/test -f ${catalina_base}/conf/config_done.info",
 }
 
 #  Changing ports in server.xml file
-  ~>exec {'changing port from server.xml':
+  exec {'changing port from server.xml':
     command => "sed -i 's/8005/${$tomcat_port_shutdown}/g; s/8080/${$tomcat_port_http}/g; s/8010/${$tomcat_port_ajp}/g' ${catalina_base}/conf/server.xml && touch ${catalina_base}/conf/config_done.info", #lint:ignore:140chars
     path    => '/bin:/usr/local/bin:/usr/bin',
     onlyif  => "/usr/bin/test -f ${catalina_base}/conf/config_done.info",
