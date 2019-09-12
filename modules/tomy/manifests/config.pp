@@ -6,6 +6,7 @@
 #   include tomy::config
 class tomy::config (
   $java_home             = $::java::java_home,
+  $tomcat_env_config     = $::tomcat::env_config,
   $catalina_home         = lookup('tomcat::parameters.catalina_home'),
   $catalina_base         = lookup('tomcat::parameters.catalina_base'),
   $tomcatuser            = lookup('tomcat::parameters.user'),
@@ -54,8 +55,7 @@ file { $tomy_conf_file:
   owner   => $tomcatuser,
   group   => $tomcatgroup,
   mode    => '0755',
-  #content => template('tomy/tomcat.conf.erb')
-  content => inline_template('tomy/tomcat.conf.erb'),
+  content => template('tomy/tomcat.conf.erb')
 }
 
 #  Changing ports in server.xml file
