@@ -7,16 +7,16 @@
 # 2. profit.
 
 [Unit]
-Description=Apache tomcat <%= scope['tomcat::parameters.servicename'] %> Web Application Container
+Description=Apache tomcat <%= scope.lookupvar['tomcat::parameters.servicename'] %> Web Application Container
 After=syslog.target network.target
 
 [Service]
 Type=simple
-EnvironmentFile=<%= scope['tomcat::parameters.catalina_base'] %>/conf/tomcat.conf
+EnvironmentFile=<%= scope.lookupvar['tomcat::parameters.catalina_base'] %>/conf/tomcat.conf
 Environment="NAME=%I"
 EnvironmentFile=-/etc/sysconfig/tomcat@%I
-ExecStart=/etc/systemd/system/<%= scope['tomcat::parameters.servicename'] %>.service start
-ExecStop=/etc/systemd/system/<%= scope['tomcat::parameters.servicename'] %>.service stop
+ExecStart=/etc/systemd/system/<%= scope.lookupvar['tomcat::parameters.servicename'] %>.service start
+ExecStop=/etc/systemd/system/<%= scope.lookupvar['tomcat::parameters.servicename'] %>.service stop
 SuccessExitStatus=143
 User=tomcat
 Group=tomcat
