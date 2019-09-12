@@ -6,7 +6,7 @@
 #   include tomy::config
 class tomy::config (
   $java_home             = $::java::java_home,
-  $tomcat_env_config     = $::tomcat::env_config,
+  Hash $tomcat_env_config = lookup('tomcat::env_config'),
   $catalina_home         = lookup('tomcat::parameters.catalina_home'),
   $catalina_base         = lookup('tomcat::parameters.catalina_base'),
   $tomcatuser            = lookup('tomcat::parameters.user'),
