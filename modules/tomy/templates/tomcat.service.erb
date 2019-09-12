@@ -12,11 +12,11 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-EnvironmentFile=<%= scope['tomcat::parameters.catalina_base'] %>/conf/tomcat.conf
+EnvironmentFile=<%= @catalina_home %>/conf/tomcat.conf
 Environment="NAME=%I"
 EnvironmentFile=-/etc/sysconfig/tomcat@%I
-ExecStart=/etc/systemd/system/<%= scope['tomcat::parameters.servicename'] %>.service start
-ExecStop=/etc/systemd/system/<%= scope['tomcat::parameters.servicename'] %>.service stop
+ExecStart=/etc/systemd/system/<%= @tomcatservicename %>.service start
+ExecStop=/etc/systemd/system/<%= @tomcatservicename %>.service stop
 SuccessExitStatus=143
 User=tomcat
 Group=tomcat
